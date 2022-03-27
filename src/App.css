@@ -30,7 +30,7 @@
 }
 .content {
   width:250px;
-  height:250px;
+  height:450px;
   margin-top: 100px;
   background-color:green;
 }
@@ -49,12 +49,12 @@
 }
 input{
   display: flex;
-  padding:10px;
-  margin:10px 0;
+  padding:5px;
+  margin:5px 0;
   width:100%;
 }
  button {
-  width:250px;
+  width:100px;
   padding:10px;
   margin:5px;
      height:75px;
@@ -69,7 +69,7 @@ input{
    width:100%;
    padding:10px;
   border:3px solid blue;
-   height:30%;
+   height:250px;
 
  }
  .outSide{
@@ -79,13 +79,32 @@ input{
    justify-content: center;
    font-size: calc(10px + 2vmin);
    color: white;
+
  }
  #spans{
      display: flex;
      justify-content: center;
      text-align: center;
  }
+#contain {
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    spacing: 10px;
+}
+#listButton{
+    background-color: purple;
 
+}
+#listButton:hover{
+    background-color: yellow
+}
+#listButton:active{
+    background-color:green
+}
+#right{
+    padding-right: 100px;
+}
  .reset1{
      background-color:#69c;
  }
@@ -97,5 +116,9 @@ input{
 
  .reset2{
      background-color:#660b0b
+ }
+
+ .butts{
+    display: flex
 
  }

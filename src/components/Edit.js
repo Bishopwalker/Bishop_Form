@@ -163,13 +163,13 @@ const Edit=()=>{
          dispatch(updatePersonFunction(person))
             setErrors([]);
             setShowErrorMessage(false)
-
+            setTimeout(() => {
+                setSubmit(false)
+            }, 750)
         return async()=> {
             await setIsMounted(false)
             setClassChoice('reset1')
-            setTimeout(() => {
-                setSubmit(false)
-            }, 1500)
+
         }
         }
         }
@@ -192,6 +192,8 @@ const Edit=()=>{
 
     return(
         <div className="App-header outSide">
+            <div id='contain'>
+                <div id='right'>
             {showErrorMessage ?(
                 <div>
                     <h3>Errors</h3>
@@ -200,14 +202,19 @@ const Edit=()=>{
                     ))}
                 </div>
             ):<div>
-                <span><h2>Full Name: {!firstName?from.current.firstName:firstName} {!lastName?from.current.lastName:lastName}</h2></span>
-                <h2>Age: {!age?from.current.age:age}</h2>
-                <h3>Hobbies: {!hobbies?from.current.hobbies:hobbies}</h3>
+                <ul>
+                    <li>Full Name: {!firstName?from.current.firstName:firstName} {!lastName?from.current.lastName:lastName}</li>
+                <li>Age: {!age?from.current.age:age}</li>
+                <li>Hobbies: {!hobbies?from.current.hobbies:hobbies}</li>
+                </ul>
             </div>}
-            <form onSubmit={handleSubmit}>
+                </div>
+
+            <form id='left' onSubmit={handleSubmit}>
                 <span id='spans'><h2>Update Your Form</h2></span>
 
                 <div id='form' >
+                    <label>{firstName?from.current.firstName:null}</label>
                         <input
                             type='text'
                             name={firstName}
@@ -217,6 +224,7 @@ const Edit=()=>{
                             value={firstName}
                             ref={firstNameRef}
                         />
+                    <label>{lastName?from.current.lastName:null}</label>
                         <input
                             type='text'
                             name={lastName}
@@ -225,6 +233,7 @@ const Edit=()=>{
 
                             value={lastName}
                         />
+                    <label>{age?from.current.age:null}</label>
                         <input
                             type={'number'}
                             name={age}
@@ -233,6 +242,7 @@ const Edit=()=>{
 
                             value={age}
                         />
+                    <label>{hobbies?from.current.hobbies:null}</label>
                         <input
                             type={'text'}
                             name={hobbies}
@@ -243,15 +253,19 @@ const Edit=()=>{
                             ref={hobbyRef}
                         />
                     </div>
-                <div>
+                <div className='butts'>
                     <button className={classChoice} onClick={reset}>Reset</button>
                 <button >Submit Form</button>
-                </div>
+
             <Link to='/viewContainer'  >
-                <button>See List</button>
+                <button id='listButton'>See List</button>
             </Link>
-            </form>
-            {submit?(<div className='green'><h2>You Have Successfully updated a Person!</h2></div>):null}
+
+
+                {submit?(<span className='green'><h2>You Have Successfully updated a Person!</h2></span>):null}
+                </div>
+                </form>
+            </div>
         </div>
     )
 }

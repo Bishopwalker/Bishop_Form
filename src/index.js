@@ -14,7 +14,7 @@ import Edit from './components/Edit'
 ReactDOM.render(
     <Provider store={store}>
         <Router>
-            <Routes>
+            <Routes className="App">
                 <Route path='/' element={<App />} />
                 <Route path='/adduser' element={<AddUser/>} />
                 <Route path='/viewSingleUser' element={<ViewSingleUser/>}/>

@@ -107,18 +107,20 @@ if(errors.length > 0){
     setShowErrorMessage(true)
     firstNameRef.current.focus()
     setClassChoice('reset2')
-    return()=>{
-    }
+
 
 }else {
     setSubmit(true)
     dispatch(addPersonFunction(person))
+    setErrors([])
+    setShowErrorMessage(false)
+    setTimeout(() => {
+        setSubmit(false)
+    }, 750)
     return async()=> {
         await setIsMounted(false)
         setClassChoice('reset1')
-        setTimeout(() => {
-            setSubmit(false)
-        }, 1500)
+
     }
 }
 }
@@ -188,6 +190,8 @@ if(errors.length===0) {
 
     return(
         <div className="App-header outSide" >
+            <div id='contain'>
+                <div id='right'>
             {showErrorMessage ?(
                 <div>
                     <h3>Errors</h3>
@@ -196,6 +200,7 @@ if(errors.length===0) {
                     ))}
                 </div>
             ):null}
+                </div>
         <form onSubmit={handleSubmit}>
                     <span id='spans'><h2>Fill Out Form</h2></span>
 
@@ -238,9 +243,10 @@ if(errors.length===0) {
             </div>
         </form>
             <Link to='/viewContainer'  >
-            <button>See List</button>
+            <button  id='listButton'>See List</button>
             </Link>
             {submit?(<div className='green'><h2>You Have Successfully added a Person!</h2></div>):null}
+        </div>
         </div>
     )
 }
