@@ -1,6 +1,8 @@
 require('dotenv').config();
 const express = require('express');
 const massive = require('massive');
+const session = require('express-session');
+const controller = require('./controller');
 const app = express();
 const {
     SERVER_PORT,
@@ -9,7 +11,14 @@ const {
 } = process.env;
 
 app.use(express.json());
-
+//Make sure to use the session secret in your .env file
+//Eventually i plan to have a log in page that will allow you to log in and out
+app.use(session({
+    secret: SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true
+}));
+//Connect to the database thru massive
 massive({
     connectionString: CONNECTION_STRING,
     ssl: {
@@ -18,10 +27,22 @@ massive({
 }).then(db => {
     app.set('db', db);
     console.log('db connected');
-    app.listen(SERVER_PORT, () => console.log(`listening on port ${SERVER_PORT}`));
-});
+
+}).catch(err => console.log(err));
 
 
-// app.listen(SERVER_PORT, () => {
-//     console.log(`Server is listening on port ${SERVER_PORT}`);
-// });
+//Endpoints
+//Create a new user
+app.post('/form/users', controller.addUser);
+//View all users
+app.get(`/form/users`, controller.getUsers);
+//View a single User by id
+app.get(`/form/users/:id`, controller.getUserById);
+//Update a user by id
+app.put(`/form/users/:id`, controller.updateUser);
+//Delete a user by id
+app.delete(`/form/users/:id`, controller.deleteUser);
+
+
+
+app.listen(SERVER_PORT, () => console.log(`listening on port ${SERVER_PORT}`));
