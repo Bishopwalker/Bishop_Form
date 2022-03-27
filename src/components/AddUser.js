@@ -98,13 +98,13 @@ useEffect(()=>{
     firstNameRef.current.focus()
 
 },[])
-    useEffect(()=>{
+    useEffect(async()=>{
         dispatch(initializedFunction())
 
 if(isMounted) {
 if(errors.length > 0){
 
-    setShowErrorMessage(true)
+  await  setShowErrorMessage(true)
     firstNameRef.current.focus()
     setClassChoice('reset2')
 
@@ -126,7 +126,7 @@ if(errors.length > 0){
 }
 
 
-    },[person,errors])
+    },[person])
 
     const reset=(e)=>{
         e.preventDefault()
@@ -143,12 +143,12 @@ if(errors.length > 0){
     }
 
 
-    const handleFirstNameChange=(e)=>{
+    const handleFirstNameChange=async(e)=>{
         e.preventDefault();
      // const {firstName, lastName, age, hobbies} = e.target;
         setErrors([]);
         setShowErrorMessage(false)
-        setFirstName(e.target.value)
+      await  setFirstName(e.target.value)
 
     },
         handleLastNameChange=(e)=>{

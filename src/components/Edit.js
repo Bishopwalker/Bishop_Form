@@ -153,7 +153,6 @@ const Edit=()=>{
     },[])
     useEffect(async()=>{
         if(isMounted) {
-            // console.log(person,'person')
         if(errors.length > 0) {
             // console.log(errors)
            await setShowErrorMessage(true)
