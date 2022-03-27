@@ -13,8 +13,8 @@ module.exports ={
     },
     addUser: async (req, res) => {
         const db = req.app.get('db');
-        const {id,firstName, lastName, age, hobby} =  req.body;
-        const user = await db.add_user({id,firstName, lastName, age, hobby});
+        const {firstname, lastname, person_age, hobby} =  req.body;
+        const user = await db.create_user({firstname, lastname, person_age, hobby});
         return res.status(200).send(user);
 
     },
@@ -26,8 +26,8 @@ module.exports ={
     },
     updateUser: async (req, res) => {
         const db = req.app.get('db');
-        const {id,firstName, lastName, age, hobby} =  req.body;
-        const user = await db.update_user({id,firstName, lastName, age, hobby});
+        const {id,firstName, lastName, person_age, hobby} =  req.body;
+        const user = await db.update_user({id,firstName, lastName, person_age, hobby});
         return res.status(200).send(user);
     }
 

@@ -1,1 +1,1 @@
-INSERT INTO users (id,firstname,lastname,age,hobbies,created_at,updated_at) VALUES ($1, $2, $3, $4, $5, now(),now());
+INSERT INTO users (firstname,lastname,person_age,hobbies) VALUES ( firstname, lastname,person_age,hobbies);
