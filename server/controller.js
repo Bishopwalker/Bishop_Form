@@ -13,8 +13,9 @@ module.exports ={
     },
     addUser: async (req, res) => {
         const db = req.app.get('db');
+        console.log(req.body)
         const {firstname, lastname, person_age, hobby} =  req.body;
-        const user = await db.create_user({firstname, lastname, person_age, hobby});
+        const user = await db.add_user({firstname, lastname, person_age, hobby});
         return res.status(200).send(user);
 
     },

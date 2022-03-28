@@ -58,9 +58,14 @@ const [isMounted,setIsMounted] = useState(true);
                 )):<div><b>Just Waiting On you to add  to the list</b></div>}
             </h3>
             {people.id === 0 || people.length === 0 ?
+                <div>
                 <Link to='/addUser'>
                     <button>Return to Form</button>
                 </Link>
+                <Link to='/viewDatabase'>
+                  <button>View Database</button>
+                </Link>
+                </div>
                 : null}
         </div>
     )

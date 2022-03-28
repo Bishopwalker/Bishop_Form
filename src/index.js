@@ -10,6 +10,7 @@ import AddUser from './components/AddUser'
 import ViewSingleUser from './components/ViewSingleUser'
 import ViewContainer from "./components/ViewContainer";
 import Edit from './components/Edit'
+import ViewDatabase  from "./components/dbView/ViewDatabase";
 
 ReactDOM.render(
     <Provider store={store}>
@@ -20,6 +21,7 @@ ReactDOM.render(
                 <Route path='/viewSingleUser' element={<ViewSingleUser/>}/>
                 <Route path='/viewContainer' element={<ViewContainer/>}/>
                 <Route path='/editUser' element={<Edit/>}/>
+                <Route path='/viewDatabase' element={<ViewDatabase/>}/>
             </Routes>
 
 </Router>

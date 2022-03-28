@@ -4,6 +4,7 @@ const massive = require('massive');
 const session = require('express-session');
 const controller = require('./controller');
 const app = express();
+const cors = require('cors');
 const {
     SERVER_PORT,
     CONNECTION_STRING,
@@ -17,6 +18,12 @@ app.use(session({
     secret: SESSION_SECRET,
     resave: false,
     saveUninitialized: true
+}));
+
+//connect cors to route it through local host
+app.use(cors({
+    origin: 'http://localhost:3001',
+    credentials: true
 }));
 //Connect to the database thru massive
 massive({

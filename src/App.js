@@ -11,6 +11,7 @@ function App() {
        <Link to='/addUser'>
         <button>Enter App</button>
        </Link>
+
       </div>
   );
 }
