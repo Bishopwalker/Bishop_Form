@@ -35,24 +35,37 @@ const founder = (id, arr)=>{
     return newArray
 }
 
-const addPersonObj=async(person )=>{
-    let clone =  await JSON.parse(JSON.stringify(person))
-    //check to see if id exist currently
+const postPerson=(person)=> {
+    let clone =  JSON.parse(JSON.stringify(person))
+    delete clone.id
+    clone.firstname=clone.firstName;
+    clone.lastname=clone.lastName;
+    delete clone.lastName;
+    delete clone.firstName
+    clone.person_age = clone.age
+    let hobby = person.hobbies;
+    delete clone.age
+    delete clone.hobbies
+    clone.hobbies = hobby
+    console.log(clone)
+ axios.post(`http://localhost:3003/form/users/`, clone)
+        .then(res => {
+            console.log(res)
+        })
+        .catch(err => {
+            console.log(err)
+        })
+}
 
+const addPersonObj= (person )=>{
+    let clone =  JSON.parse(JSON.stringify(person))
 
     clone.id=initialState.id
 
-
     clone.firstName = fixStr(person.firstName)
     clone.lastName = fixStr(person.lastName)
-    console.log(clone)
-    axios.post(`http://localhost:3003/form/users/`, {clone})
-        .then(res=>{
-            console.log(res)
-        })
-        .catch(err=>{
-            console.log(err)
-        })
+         postPerson(clone)
+
     return clone
 }
 const updatePersonFunction=(person,state)=>{
