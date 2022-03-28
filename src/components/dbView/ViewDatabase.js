@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import "../../App.css"
+import {Link} from "react-router-dom"
 const ViewDatabase = (props) => {
   const [data, setData] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
@@ -44,6 +45,9 @@ console.log(data)
       <div>
           <h2>DataBase Entries</h2>
       {mappedData}
+          <Link to='/addUser'>
+              <button>Return to Form</button>
+          </Link>
       </div>
     </div>
   );
