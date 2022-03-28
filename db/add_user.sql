@@ -1,1 +1,3 @@
-INSERT INTO users (firstname,lastname,person_age,hobbies) VALUES ( firstname, lastname,person_age,hobbies);
+INSERT INTO users (
+                   firstname,lastname,person_age,hobbies
+                   ) VALUES ( $1,$2,$3,$4 );
