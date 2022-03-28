@@ -7,10 +7,11 @@ const ViewContainer = () => {
     const [people, runningThruPeople] = React.useState([])
     const dispatch = useDispatch()
     const person = useSelector(state=>state.person);
-const [isMounted,setIsMounted] = useState(true)
+const [isMounted,setIsMounted] = useState(true);
 
 
-useEffect(()=>{
+
+    useEffect(()=>{
 
   if(isMounted) {
       runningThruPeople(person)
@@ -42,12 +43,12 @@ useEffect(()=>{
                         <p>AGE: {person.age}</p>
                         <p>Hobbies: {person.hobbies}</p>
                         <div className="button-group">
-                        <button onClick={()=>deletePerson(person.id)} >Delete</button>
+                        <button id='delete_button'  onClick={()=>deletePerson(person.id)} >Delete</button>
                         <Link to='/viewSingleUser' state={{from: {
                           person:person.id,
                                 people:{people}
                         }}}>
-                        <button >View Person</button>
+                        <button  id='listButton' >View Person</button>
                         </Link>
                         <Link to='/addUser'>
                         <button>Return to Form</button>

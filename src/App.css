@@ -92,6 +92,21 @@ input{
     text-align: center;
     spacing: 10px;
 }
+#delete_button{
+    background-color:red;
+  color:white;
+
+}
+#delete_button:active{
+    background-color:green;
+    font-weight:bold;
+}
+#delete_button:hover{
+  background-color:yellow;
+  color:white;
+  font-weight:bold;
+  font-size:20px;
+}
 #listButton{
     background-color: purple;
 
@@ -117,7 +132,14 @@ input{
  .reset2{
      background-color:#660b0b
  }
-
+.reset2:hover {
+    background-color: #e4e442;
+    font-weight: bold;
+    font-size: large;
+}
+.reset1:active {
+    background-color: green;
+}
  .butts{
     display: flex
 
