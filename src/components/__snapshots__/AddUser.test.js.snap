@@ -1,0 +1,73 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Add User Should take a snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="App-header outSide"
+  >
+    <div
+      id="contain"
+    >
+      <div
+        id="right"
+      />
+      <form>
+        <span
+          id="spans"
+        >
+          <h2>
+            Fill Out Form
+          </h2>
+        </span>
+        <div
+          id="form"
+        >
+          <input
+            name=""
+            placeholder="First Name"
+            type="text"
+            value=""
+          />
+          <input
+            name=""
+            placeholder="last Name"
+            type="text"
+            value=""
+          />
+          <input
+            name=""
+            placeholder="age"
+            type="number"
+            value=""
+          />
+          <input
+            name=""
+            placeholder="Hobbies"
+            type="text"
+            value=""
+          />
+        </div>
+        <div>
+          <button
+            class="reset1"
+          >
+            Reset
+          </button>
+          <button>
+            Submit Form
+          </button>
+        </div>
+      </form>
+      <a
+        href="/viewContainer"
+      >
+        <button
+          id="listButton"
+        >
+          See List
+        </button>
+      </a>
+    </div>
+  </div>
+</DocumentFragment>
+`;

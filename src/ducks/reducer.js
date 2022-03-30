@@ -71,8 +71,10 @@ const addPersonObj= (person )=>{
 const updatePersonFunction=(person,state)=>{
     let clone =  JSON.parse(JSON.stringify(person))
     //check to see if id exist currently
+
     let newState = JSON.parse(JSON.stringify(state))
     let checkID = state.person.findIndex(person=>person.id===clone.id)
+
   newState.person[checkID] = clone
     return newState
 }

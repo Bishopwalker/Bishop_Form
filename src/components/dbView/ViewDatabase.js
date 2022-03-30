@@ -2,12 +2,23 @@ import React from 'react';
 import axios from 'axios';
 import "../../App.css"
 import {Link} from "react-router-dom"
+import './ViewDatabase.css'
+
 const ViewDatabase = (props) => {
   const [data, setData] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
   const [error, setError] = React.useState(null);
+  const [ghosting, setGhosting] = React.useState('alert');
+
+const flashColor = () => {
+
+}
+React.useEffect(() => {
+
+},[error, loading])
 
   React.useEffect(() => {
+
     const fetchData = async () => {
       try {
         const result = await axios.get(
@@ -18,6 +29,7 @@ const ViewDatabase = (props) => {
         setLoading(false);
       } catch (error) {
         setError(error);
+
         setLoading(false);
       }
     };
@@ -25,19 +37,32 @@ const ViewDatabase = (props) => {
   }, []);
 
   if (loading) {
-    return <div><h2>Loading...</h2></div>;
+    return <div className={ghosting}><h2>Loading...</h2></div>;
   }
 
   if (error) {
-    return <div>Error: {error.message}</div>;
+
+         // setGhosting('alert1');
+             setTimeout(() => {
+            setGhosting('alert2');
+          }, 1000);
+             setInterval(() => {
+            setGhosting('alert');
+             },1000)
+    return <div className={ghosting}>Error: {error.message}</div>;
   }
 console.log(data)
   let mappedData = data.map((item, index) =>(
       <ul key={index}>
+
         <li >{item.id}</li>
         <li >{item.firstname} {item.lastname}</li>
         <li>{item.person_age}</li>
         <li>{item.hobbies}</li>
+          <div className="btn-group">
+          <button>Delete</button>
+          <button>Edit</button>
+              </div>
       </ul>
   ))
   return (

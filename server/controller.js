@@ -23,7 +23,9 @@ module.exports ={
     deleteUser: async (req, res) => {
         const db = req.app.get('db');
         const {id} = req.params;
-        const user = await db.delete_user({id});
+        console.log(id)
+        const user = await db.delete_user(id);
+        console.log(user)
         return res.status(200).send(user);
     },
     updateUser: async (req, res) => {

@@ -1,0 +1,13 @@
+.alert{
+    background-color: mediumvioletred;
+    height: 300px;
+    font-size: 40px;
+}
+.alert1{
+    background-color: mediumseagreen;
+    height: 100%;
+}
+.alert2{
+    background-color: burlywood;
+    height: 100%;
+}

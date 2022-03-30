@@ -15,11 +15,11 @@ const Edit=()=>{
     const hobbyRef=React.useRef(),
         firstNameRef = React.useRef();
 
-    const [firstName,setFirstName] = useState(''),
+    const [firstName,setFirstName] = useState(),
 
-        [lastName,setLastName] = useState(''),
-        [age,setAge] = useState(''),
-        [hobbies,setHobbies] = useState(''),
+        [lastName,setLastName] = useState(),
+        [age,setAge] = useState(),
+        [hobbies,setHobbies] = useState(),
         [id,setID] = useState(from.current.id),
         [person,setPerson] = useState({
             id,
@@ -150,6 +150,10 @@ const Edit=()=>{
     }
     useEffect( ()=>{
         firstNameRef.current.focus()
+        setFirstName(from.current.firstName)
+        setLastName(from.current.lastName)
+        setAge(from.current.age)
+        setHobbies(from.current.hobbies)
     },[])
     useEffect(async()=>{
         if(isMounted) {
@@ -213,7 +217,6 @@ const Edit=()=>{
                 <span id='spans'><h2>Update Your Form</h2></span>
 
                 <div id='form' >
-                    <label>{firstName?from.current.firstName:null}</label>
                         <input
                             type='text'
                             name={firstName}
@@ -223,31 +226,25 @@ const Edit=()=>{
                             value={firstName}
                             ref={firstNameRef}
                         />
-                    <label>{lastName?from.current.lastName:null}</label>
                         <input
                             type='text'
                             name={lastName}
                             placeholder="last Name"
                             onChange={handleLastNameChange}
-
                             value={lastName}
                         />
-                    <label>{age?from.current.age:null}</label>
                         <input
                             type={'number'}
                             name={age}
                             placeholder="age"
                             onChange={handleAgeChange}
-
                             value={age}
                         />
-                    <label>{hobbies?from.current.hobbies:null}</label>
                         <input
                             type={'text'}
                             name={hobbies}
                             placeholder="Hobbies"
                             onChange={handleHobbiesChange}
-
                             value={hobbies}
                             ref={hobbyRef}
                         />
