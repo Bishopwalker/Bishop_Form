@@ -48,8 +48,8 @@ app.get(`/form/user/:id`, controller.getUserById);
 //Update a user by id
 app.put(`/form/users/:id`, controller.updateUser);
 //Delete a user by id
-app.delete(`/form/users/:id`, controller.deleteUser);
+app.delete(`/form/used/:id`, controller.deleteUser);
 
 
 
-app.listen(SERVER_PORT, () => console.log(`don't switch that dail from.... ${SERVER_PORT}`));
+app.listen(SERVER_PORT, () => console.log(`don't switch that dail from... ${SERVER_PORT}`));
