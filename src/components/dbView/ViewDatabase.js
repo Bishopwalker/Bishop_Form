@@ -10,37 +10,36 @@ const ViewDatabase = (props) => {
   const [error, setError] = React.useState(null);
   const [ghosting, setGhosting] = React.useState('alert');
 
-const deletePerson = (id) => {
+React.useEffect(() => {
+
+},[error, loading])
+    const fetchData = async () => {
+        try {
+            const result = await axios.get(
+                'http://localhost:3003/form/users/'
+            );
+
+            setData(result.data);
+            setLoading(false);
+        } catch (error) {
+            setError(error);
+
+            setLoading(false);
+        }
+    };
+const deletePerson = async(id) => {
     console.log(id)
-  axios.delete(`http://localhost:3003/form/used/${id}`)
-  .then(res => {
-    console.log(res)
-  })
+ const result = await axios.delete(`http://localhost:3003/form/used/${id}`)
+  console.log(result.data)
+      setData(result.data)
   .catch(err => {
     console.log(err)
     setGhosting('alert2')
   })
 }
-React.useEffect(() => {
-
-},[error, loading])
-
   React.useEffect(() => {
 
-    const fetchData = async () => {
-      try {
-        const result = await axios.get(
-          'http://localhost:3003/form/users/'
-        );
 
-        setData(result.data);
-        setLoading(false);
-      } catch (error) {
-        setError(error);
-
-        setLoading(false);
-      }
-    };
     fetchData().then(r => console.log(r));
   }, []);
 
