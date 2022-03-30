@@ -10,8 +10,16 @@ const ViewDatabase = (props) => {
   const [error, setError] = React.useState(null);
   const [ghosting, setGhosting] = React.useState('alert');
 
-const flashColor = () => {
-
+const deletePerson = (id) => {
+    console.log(id)
+  axios.delete(`http://localhost:3003/form/used/${id}`)
+  .then(res => {
+    console.log(res)
+  })
+  .catch(err => {
+    console.log(err)
+    setGhosting('alert2')
+  })
 }
 React.useEffect(() => {
 
@@ -60,7 +68,7 @@ console.log(data)
         <li>{item.person_age}</li>
         <li>{item.hobbies}</li>
           <div className="btn-group">
-          <button>Delete</button>
+          <button onClick={()=>deletePerson(item.id)}>Delete</button>
           <button>Edit</button>
               </div>
       </ul>
