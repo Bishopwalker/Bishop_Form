@@ -34,6 +34,15 @@ const founder = (id, arr)=>{
     newArray= arr.find(item=>item.id===id)
     return newArray
 }
+// const getData=async()=>{
+//    axios.get('http://localhost:3003/form/users')
+//        .then(res=>{
+//            return res.data
+//        })
+//        .catch(err=>{
+//            console.log(err)
+//        })
+// }
 
 const postPerson=(person)=> {
     let clone =  JSON.parse(JSON.stringify(person))
@@ -91,8 +100,10 @@ const filtered = (id,arr)=>{
   const reducer = (state = initialState, action) => {
         switch (action.type) {
             case 'INITIALIZED':
+                // const data=getData()
+                // console.log(data)
                 return{
-                    ...state
+                    ...state,
                 }
             case 'ADD_PERSON':
                 let people = addPersonObj(action.payload)
