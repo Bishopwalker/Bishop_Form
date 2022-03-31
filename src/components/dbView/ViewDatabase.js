@@ -29,13 +29,14 @@ React.useEffect(() => {
     };
 const deletePerson = async(id) => {
     console.log(id)
- const result = await axios.delete(`http://localhost:3003/form/used/${id}`)
-  console.log(result.data)
-      setData(result.data)
-  .catch(err => {
+    try {
+        const result = await axios.delete(`http://localhost:3003/form/used/${id}`)
+
+        setData(result.data)
+    }catch(err) {
     console.log(err)
     setGhosting('alert2')
-  })
+  }
 }
   React.useEffect(() => {
 

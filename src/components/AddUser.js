@@ -217,14 +217,14 @@ if(errors.length===0) {
             <input
                 type='text'
                 name={lastName}
-                placeholder="last Name"
+                placeholder="Last Name"
                 onChange={handleLastNameChange}
                 value={lastName}
             />
             <input
                 type={'number'}
                 name={age}
-                placeholder="age"
+                placeholder="Age"
                 onChange={handleAgeChange}
                 value={age}
             />

@@ -30,13 +30,13 @@ exports[`Add User Should take a snapshot 1`] = `
           />
           <input
             name=""
-            placeholder="last Name"
+            placeholder="Last Name"
             type="text"
             value=""
           />
           <input
             name=""
-            placeholder="age"
+            placeholder="Age"
             type="number"
             value=""
           />
