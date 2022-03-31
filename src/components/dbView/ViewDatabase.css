@@ -11,3 +11,8 @@
     background-color: burlywood;
     height: 100%;
 }
+
+#dived{
+    display: flex;
+    justify-content: space-around;
+}

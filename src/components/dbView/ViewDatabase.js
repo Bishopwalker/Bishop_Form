@@ -1,14 +1,14 @@
-import React from 'react';
+import React, {useState} from 'react';
 import axios from 'axios';
 import "../../App.css"
 import {Link} from "react-router-dom"
 import './ViewDatabase.css'
-
 const ViewDatabase = (props) => {
   const [data, setData] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
   const [error, setError] = React.useState(null);
   const [ghosting, setGhosting] = React.useState('alert');
+
 
 React.useEffect(() => {
 
@@ -38,6 +38,7 @@ const deletePerson = async(id) => {
     setGhosting('alert2')
   }
 }
+
   React.useEffect(() => {
 
 
@@ -59,7 +60,7 @@ const deletePerson = async(id) => {
              },1000)
     return <div className={ghosting}>Error: {error.message}</div>;
   }
-console.log(data)
+
   let mappedData = data.map((item, index) =>(
       <ul key={index}>
 
@@ -67,20 +68,33 @@ console.log(data)
         <li >{item.firstname} {item.lastname}</li>
         <li>{item.person_age}</li>
         <li>{item.hobbies}</li>
+
           <div className="btn-group">
           <button onClick={()=>deletePerson(item.id)}>Delete</button>
-          <button>Edit</button>
+              <Link to='/editDatabase' state={{from:item.id}}>
+          <button  >Edit</button>
+              </Link>
               </div>
       </ul>
   ))
-  return (
+
+    return (
     <div className="App-header outSide ">
       <div>
           <h2>DataBase Entries</h2>
+          <div id='dived'>
+              <div>
       {mappedData}
+              </div>
+              <div>
+
+
+              </div>
+          </div>
           <Link to='/addUser'>
               <button>Return to Form</button>
           </Link>
+
       </div>
     </div>
   );

@@ -31,8 +31,11 @@ module.exports ={
     },
     updateUser: async (req, res) => {
         const db = req.app.get('db');
-        const {id,firstName, lastName, person_age, hobby} =  req.body;
-        const user = await db.update_user({id,firstName, lastName, person_age, hobby});
+        const{id} = req.params;
+        console.log(req.body)
+        console.log(id)
+        const {firstName, lastName, person_age, hobby} =  req.body;
+        const user = await db.update_user(id,firstName, lastName, person_age, hobby);
         return res.status(200).send(user);
     }
 

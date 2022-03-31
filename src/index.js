@@ -11,6 +11,7 @@ import ViewSingleUser from './components/ViewSingleUser'
 import ViewContainer from "./components/ViewContainer";
 import Edit from './components/Edit'
 import ViewDatabase  from "./components/dbView/ViewDatabase";
+import DatabaseEditForm from "./components/dbView/DatabaseEditForm";
 
 ReactDOM.render(
     <Provider store={store}>
@@ -22,6 +23,7 @@ ReactDOM.render(
                 <Route path='/viewContainer' element={<ViewContainer/>}/>
                 <Route path='/editUser' element={<Edit/>}/>
                 <Route path='/viewDatabase' element={<ViewDatabase/>}/>
+                <Route path='/editDatabase' element={< DatabaseEditForm/>}/>
             </Routes>
 
 </Router>
