@@ -44,12 +44,12 @@ app.post('/form/users', controller.addUser);
 //View all users
 app.get(`/form/users`, controller.getUsers);
 //View a single User by id
-app.get(`/form/user/:id`, controller.getUserById);
+app.get(`/form/users/:id`, controller.getUserById);
 //Update a user by id
-app.put(`/form/use/:id`, controller.updateUser);
+app.put(`/form/users/:id`, controller.updateUser);
 //Delete a user by id
-app.delete(`/form/used/:id`, controller.deleteUser);
+app.delete(`/form/users/:id`, controller.deleteUser);
 
 
 
-app.listen(SERVER_PORT, () => console.log(`don't switch that dail from... ${SERVER_PORT}`));
+app.listen(SERVER_PORT, () => console.log(`don't switch that dail from....${SERVER_PORT}`));

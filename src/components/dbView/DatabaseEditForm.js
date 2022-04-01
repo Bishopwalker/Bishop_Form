@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {useLocation} from 'react-router-dom';
+import {Link, useLocation} from 'react-router-dom';
 import axios from "axios";
 
 const DatabaseEditForm=()=>{
@@ -11,13 +11,50 @@ const DatabaseEditForm=()=>{
         [hobbies,setHobbies] = useState(''),
         [id,setID] = useState(0),
         [person,setPerson] = useState({
-            id,
             firstName,
             lastName,
             age,
             hobbies
         });
     console.log(from)
+    const updatePerson= async(id,person)=>{
+        try {
+            const result = await axios.put(`http://localhost:3003/form/users/${id}`,person)
+            console.log(result)
+        } catch (err) {
+            console.log(err)
+        }
+    }
+    const handleSubmit=(e)=>{
+        e.preventDefault();
+        const person = {
+            firstName,
+            lastName,
+            age,
+            hobbies
+        };
+        updatePerson(id,person).then((r)=>console.log(r))
+        // axios.put(`http://localhost:3003/form/users/${id}`,person)
+        //     .then(res=>{
+        //         console.log(res)
+        //         setFirstName('');
+        //         setLastName('');
+        //         setAge('');
+        //         setHobbies('');
+        //         setID(0);
+        //         setPerson({
+        //             firstName,
+        //             lastName,
+        //             age,
+        //             hobbies
+        //         });
+        //     })
+        //     .catch(err=>{
+        //         console.log(err)
+        //     })
+    }
+
+
     function handleFirstNameChange(e) {
         e.preventDefault();
         setFirstName(e.target.value)
@@ -36,7 +73,7 @@ const DatabaseEditForm=()=>{
     }
     const editPerson = async(id) => {
         try {
-            const result = await axios.get(`http://localhost:3003/form/user/${id}`)
+            const result = await axios.get(`http://localhost:3003/form/users/${id}`)
 
             setFirstName(result.data[0].firstname)
             setLastName(result.data[0].lastname)
@@ -54,16 +91,9 @@ const DatabaseEditForm=()=>{
         editPerson(from).then((r)=>console.log(r))
     },[])
 
-    const updatePerson= async(id)=>{
-        try {
-            const result = await axios.put(`http://localhost:3003/form/user/${id}`,person)
-            console.log(result)
-        } catch (err) {
-            console.log(err)
-        }
-    }
+
     return(
-        <form>
+        <form onSubmit={handleSubmit}>
             <input
                 type='text'
                 placeholder='First Name'
@@ -88,7 +118,10 @@ const DatabaseEditForm=()=>{
                 value={hobbies}
                 onChange={handleHobbiesChange}
             />
-            <button>Submit</button>
+            <button>Update User</button>
+            <Link to='/viewDatabase'>
+                <button>return to db</button>
+            </Link>
         </form>
     )
 }
