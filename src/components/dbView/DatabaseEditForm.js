@@ -5,21 +5,23 @@ import axios from "axios";
 const DatabaseEditForm=()=>{
     const location = useLocation();
     const {from} = location.state
-    const [firstName,setFirstName] = useState(''),
-        [lastName,setLastName] = useState(''),
-        [age,setAge] = useState(''),
+    const [firstname,setFirstName] = useState(''),
+        [lastname,setLastName] = useState(''),
+        [person_age,setAge] = useState(''),
         [hobbies,setHobbies] = useState(''),
         [id,setID] = useState(0),
-        [person,setPerson] = useState({
-            firstName,
-            lastName,
-            age,
+        [people,setPerson] = useState({
+            firstname,
+            lastname,
+            person_age,
             hobbies
-        });
-    console.log(from)
-    const updatePerson= async(id,person)=>{
+        }),
+        [isEdit,setIsEdit] = useState(false);
+
+    const updatePerson= async(id,people)=>{
+        await setIsEdit(true);
         try {
-            const result = await axios.put(`http://localhost:3003/form/users/${id}`,person)
+            const result = await axios.put(`http://localhost:3003/form/users/${id}`,people)
             console.log(result)
         } catch (err) {
             console.log(err)
@@ -28,30 +30,14 @@ const DatabaseEditForm=()=>{
     const handleSubmit=(e)=>{
         e.preventDefault();
         const person = {
-            firstName,
-            lastName,
-            age,
+            firstname,
+            lastname ,
+            person_age,
             hobbies
         };
-        updatePerson(id,person).then((r)=>console.log(r))
-        // axios.put(`http://localhost:3003/form/users/${id}`,person)
-        //     .then(res=>{
-        //         console.log(res)
-        //         setFirstName('');
-        //         setLastName('');
-        //         setAge('');
-        //         setHobbies('');
-        //         setID(0);
-        //         setPerson({
-        //             firstName,
-        //             lastName,
-        //             age,
-        //             hobbies
-        //         });
-        //     })
-        //     .catch(err=>{
-        //         console.log(err)
-        //     })
+        // console.log(person)
+        updatePerson(id,person).then((r)=>setTimeout(()=>setIsEdit(false),3000) )
+
     }
 
 
@@ -90,26 +76,33 @@ const DatabaseEditForm=()=>{
 
         editPerson(from).then((r)=>console.log(r))
     },[])
-
+React.useEffect(()=>{
+    setPerson({
+        firstname,
+        lastname,
+        person_age,
+        hobbies
+    })
+},[firstname,lastname,person_age,hobbies])
 
     return(
         <form onSubmit={handleSubmit}>
             <input
                 type='text'
                 placeholder='First Name'
-                value={firstName}
+                value={firstname}
                 onChange={handleFirstNameChange}
             />
             <input
                 type='text'
                 placeholder='Last Name'
-                value={lastName}
+                value={lastname}
                 onChange={handleLastNameChange}
             />
             <input
                 type='number'
                 placeholder='Age'
-                value={age}
+                value={person_age}
                 onChange={handleAgeChange}
             />
             <input
@@ -122,6 +115,18 @@ const DatabaseEditForm=()=>{
             <Link to='/viewDatabase'>
                 <button>return to db</button>
             </Link>
+            {isEdit?
+                <div>
+                    <h4>id: {id}</h4>
+                    <h2>name: {people.firstname}, {people.lastname}</h2>
+                    <h2>age: {people.person_age}</h2>
+                    <h3>hobbies: {people.hobbies}</h3>
+                </div>
+                :
+                <div>
+                    <h1>Loading...</h1>
+                </div>
+            }
         </form>
     )
 }

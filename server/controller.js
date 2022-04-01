@@ -24,18 +24,14 @@ module.exports ={
     deleteUser: async (req, res) => {
         const db = req.app.get('db');
         const {id} = req.params;
-        console.log(id)
         const user = await db.delete_user(id);
-        console.log(user)
         return res.status(200).send(user);
     },
     updateUser: async (req, res) => {
         const db = req.app.get('db');
         const{id} = req.params;
-        console.log(req.body)
-        console.log(id)
-        const {firstName, lastName, person_age, hobby} =  req.body;
-        const user = await db.update_user(id,firstName, lastName, person_age, hobby);
+        const {firstname, lastname, person_age, hobbies} =  req.body;
+        const user = await db.update_user(id,firstname, lastname, person_age, hobbies);
         return res.status(200).send(user);
     }
 
