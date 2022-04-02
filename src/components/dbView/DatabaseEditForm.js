@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {Link, useLocation} from 'react-router-dom';
 import axios from "axios";
+import './DatabaseEditForm.css';
 
 const DatabaseEditForm=()=>{
     const location = useLocation();
@@ -92,24 +93,28 @@ React.useEffect(()=>{
                 placeholder='First Name'
                 value={firstname}
                 onChange={handleFirstNameChange}
+                name='firstname'
             />
             <input
                 type='text'
                 placeholder='Last Name'
                 value={lastname}
                 onChange={handleLastNameChange}
+                name='lastname'
             />
             <input
                 type='number'
                 placeholder='Age'
                 value={person_age}
                 onChange={handleAgeChange}
+                name='person_age'
             />
             <input
                 type='text'
                 placeholder='Hobbies'
                 value={hobbies}
                 onChange={handleHobbiesChange}
+                name='hobbies'
             />
             <button>Update User</button>
             <Link to='/viewDatabase'>

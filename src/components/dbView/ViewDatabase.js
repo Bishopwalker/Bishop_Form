@@ -62,12 +62,11 @@ const deletePerson = async(id) => {
   }
 
   let mappedData = data.map((item, index) =>(
-      <ul key={index}>
-
-        <li >{item.id}</li>
-        <li >{item.firstname} {item.lastname}</li>
-        <li>{item.person_age}</li>
-        <li>{item.hobbies}</li>
+      <ul key={index} id='listItem'>
+        <li>ID: {item.id}</li>
+        <li>Name: {item.firstname} {item.lastname}</li>
+        <li>Age: {item.person_age}</li>
+        <li>Hobbies: {item.hobbies}</li>
 
           <div className="btn-group">
           <button onClick={()=>deletePerson(item.id)}>Delete</button>
@@ -79,23 +78,27 @@ const deletePerson = async(id) => {
   ))
 
     return (
-    <div className="App-header outSide ">
+    <div className="db">
       <div>
           <h2>DataBase Entries</h2>
+          <Link to='/addUser'>
+              <span>Return to Form</span>
+          </Link>
+          <br/>
           <div id='dived'>
               <div>
       {mappedData}
+
               </div>
+
               <div>
 
 
               </div>
           </div>
-          <Link to='/addUser'>
-              <button>Return to Form</button>
-          </Link>
 
       </div>
+
     </div>
   );
 };
