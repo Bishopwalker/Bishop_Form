@@ -52,13 +52,17 @@ const deletePerson = async(id) => {
   if (error) {
 
          // setGhosting('alert1');
-             setTimeout(() => {
-            setGhosting('alert2');
-          }, 1000);
+         //     setTimeout(() => {
+         //    setGhosting('alert2');
+         //  }, 1000);
              setInterval(() => {
             setGhosting('alert');
              },1000)
-    return <div className={ghosting}>Error: {error.message}</div>;
+    return <div className={ghosting}>Error: {error.message}
+        <Link to='/addUser'>
+            <span>Return to Form</span>
+        </Link>
+             </div>;
   }
 
   let mappedData = data.map((item, index) =>(

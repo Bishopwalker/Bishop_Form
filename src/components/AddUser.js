@@ -236,14 +236,18 @@ if(errors.length===0) {
                 value={hobbies}
                 ref={hobbyRef}
             />
+        <Link to='/viewDatabase'>
+            <button>View Database</button>
+        </Link>
     </div>
+
             <div>
             <button className={classChoice} onClick={reset}>Reset</button>
             <button >Submit Form</button>
             </div>
         </form>
             <Link to='/viewContainer'  >
-            <button  id='listButton'>See List</button>
+            <button id='listButton'>See Local List</button>
             </Link>
             {submit?(<div className='green'><h2>You Have Successfully added a Person!</h2></div>):null}
         </div>
