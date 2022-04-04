@@ -42,7 +42,7 @@ const deletePerson = async(id) => {
   React.useEffect(() => {
 
 
-    fetchData().then(r => console.log(r));
+    fetchData().then(r => (r));
   }, []);
 
   if (loading) {

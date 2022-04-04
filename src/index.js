@@ -13,6 +13,10 @@ import Edit from './components/Edit'
 import ViewDatabase  from "./components/dbView/ViewDatabase";
 import DatabaseEditForm from "./components/dbView/DatabaseEditForm";
 
+if (process.env.NODE_ENV === 'development') {
+require('./__mocks__/browser')
+}
+
 ReactDOM.render(
     <Provider store={store}>
         <Router>
