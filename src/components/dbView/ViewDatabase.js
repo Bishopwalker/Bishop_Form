@@ -46,7 +46,7 @@ const deletePerson = async(id) => {
   }, []);
 
   if (loading) {
-    return <div className={ghosting}><h2>Loading...</h2></div>;
+    return <div data-testid='loading' className={ghosting}><h2>Loading...</h2></div>;
   }
 
   if (error) {
@@ -82,7 +82,7 @@ const deletePerson = async(id) => {
   ))
 
     return (
-    <div className="db">
+    <div className="db" data-testid="db">
       <div>
           <h2>DataBase Entries</h2>
           <Link to='/addUser'>
