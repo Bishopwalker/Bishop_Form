@@ -37,5 +37,15 @@ module.exports ={
     logout: (req, res) => {
         req.session.destroy();
         res.sendStatus(200);
+    },
+    logMeIn:async(req, res) => {
+        const db = req.app.get('db');
+        if(req.session.user){
+            console.log(req.session.user)
+            const me = await db.get_user(req.session.user.id);
+            res.status(200).send(req.session.user);
+        }else{
+            res.status(401).send('Please log in');
+        }
     }
 }

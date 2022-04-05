@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
-import {Link} from 'react-router-dom';
-
+import {Link,useNavigate} from 'react-router-dom';
+import axios from 'axios';
 const Login = () => {
     const [formData, setFormData] = useState({
 
@@ -8,18 +8,25 @@ const Login = () => {
         password: '',
 
     });
-
+const navigate = useNavigate();
     const {  email, password} = formData;
 
     const onChange = e => setFormData({...formData, [e.target.name]: e.target.value});
 
+    const handleLogin=async()=>{
+        const body = {email, password};
+        try {
+            const res = await axios.post('http://localhost:3003/auth/login', {email, password});
+            console.log(res);
+            navigate('/addUser');
+
+        } catch (err) {
+            console.error(err.response.data);
+        }
+    }
     const onSubmit = async e => {
         e.preventDefault();
-        if (password !== password) {
-            alert('Passwords do not match');
-        } else {
-            console.log(formData);
-        }
+    await handleLogin()
     };
 
     return (
