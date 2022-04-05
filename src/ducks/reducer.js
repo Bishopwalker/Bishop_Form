@@ -8,7 +8,9 @@ const initialState={
 const ADD_PERSON='ADD_PERSON',
     DELETE_PERSON='DELETE_PERSON',
     VIEW_PERSON='VIEW_PERSON',
-    INITIALIZED="INITIALIZED"
+    INITIALIZED="INITIALIZED",
+    UPDATE_PERSON='UPDATE_PERSON',
+    GET_USER='GET_USER';
 
 
 export function addPerson(person) {
@@ -24,7 +26,9 @@ export function viewPerson(id){
         id
     }
 }
+
 const fixStr=(str)=>{
+    console.log(str);
     let firstLetter = str.substring(0,1).toUpperCase() + str.substring(1).toLowerCase()
     return firstLetter.replace(/\s/g, "")
 
@@ -57,7 +61,26 @@ const postPerson=(person)=> {
             console.log(err)
         })
 }
-
+  const registerPerson=(person)=>{
+    let clone =  JSON.parse(JSON.stringify(person))
+  // clone.id=initialState.id
+console.log(clone)
+    clone.firstname = fixStr(clone.firstname)
+    axios.post(`http://localhost:3003/auth/register/`, clone)
+        .then(res => {
+            console.log(res)
+        })
+        .catch(err => {
+            console.log(err)
+        })
+}
+export function registerUser(userData){
+    registerPerson(userData)
+    return{
+        type:GET_USER,
+        userData
+    }
+}
 const addPersonObj= (person )=>{
     let clone =  JSON.parse(JSON.stringify(person))
 
@@ -95,6 +118,11 @@ const filtered = (id,arr)=>{
                 return{
                     ...state,
                 }
+                case 'GET_USER':
+                    return{
+                        ...state,
+                        person:action.person
+                    }
             case 'ADD_PERSON':
                 let people = addPersonObj(action.payload)
                 initialState.id=++initialState.id

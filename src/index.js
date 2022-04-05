@@ -12,6 +12,8 @@ import ViewContainer from "./components/ViewContainer";
 import Edit from './components/Edit'
 import ViewDatabase  from "./components/dbView/ViewDatabase";
 import DatabaseEditForm from "./components/dbView/DatabaseEditForm";
+import Register from "./components/login/Register";
+import Login from "./components/login/Login";
 
 if (process.env.NODE_ENV === 'development') {
 require('./__mocks__/browser')
@@ -28,6 +30,8 @@ ReactDOM.render(
                 <Route path='/editUser' element={<Edit/>}/>
                 <Route path='/viewDatabase' element={<ViewDatabase/>}/>
                 <Route path='/editDatabase' element={< DatabaseEditForm/>}/>
+                <Route path='/register' element={<Register/>}/>
+                <Route path='/login' element={<Login/>}/>
             </Routes>
 
 </Router>

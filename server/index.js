@@ -3,6 +3,7 @@ const express = require('express');
 const massive = require('massive');
 const session = require('express-session');
 const controller = require('./controller');
+const authController = require('./auth');
 const app = express();
 const cors = require('cors');
 const {
@@ -17,7 +18,10 @@ app.use(express.json());
 app.use(session({
     secret: SESSION_SECRET,
     resave: false,
-    saveUninitialized: true
+    saveUninitialized: true,
+    cookie: {
+        maxAge: 1000 * 60 * 60 * 24 * 7
+    }
 }));
 
 //connect cors to route it through local host
@@ -39,6 +43,8 @@ massive({
 
 
 //Endpoints
+//register new user
+app.post(`/auth/register`, authController.register);
 //Create a new user
 app.post('/form/users', controller.addUser);
 //View all users

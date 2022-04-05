@@ -6,12 +6,18 @@ import userEvent from "@testing-library/user-event";
 import {createMemoryHistory} from 'history'
 import {BrowserRouter, MemoryRouter, useLocation} from 'react-router-dom'
 import '@testing-library/jest-dom'
-import { useSelector} from "react-redux";
+import {Provider, useSelector} from "react-redux";
 import store from '../ducks/store'
 import {Router, Route} from 'react-router'
-const renderWithRouter=(ui, {route='/'} = {}) =>{
-    window.history.pushState({}, 'Test Page', route)
-    return render(ui, {wrapper: BrowserRouter})
+const renderWithRouter=(ui, {route='localhost:3000/viewSingleUser'} = {}) =>{
+    const history = createMemoryHistory()
+     history.push(route,{state: {
+            firstName: 'Jeff',
+            lastName: 'Dodds',
+            age: 40,
+            hobbies: 'Surfing'
+        }})
+    return render(<Provider store={store}>{ui}</Provider>, {wrapper: BrowserRouter})
 }
 const history = createMemoryHistory()
 const renderWithRouter2=Component=> render(
@@ -76,15 +82,22 @@ describe('View Single User Component', () => {
         expect(screen.getByText(/Return Back to Form/i)).toBeInTheDocument()
     })
     test('render something else',()=>{
-
+        const history = createMemoryHistory()
+        history.push( 'http://localhost:3003/form/users/',{state: {
+                firstName: 'Jeff',
+                lastName: 'Dodds',
+                age: 40,
+                hobbies: 'Surfing'
+            }})
+     // const rendered =  renderWithRouter(<ViewSingleUser history={history}/>)
     })
 
     test('app',()=>{
         const history = createMemoryHistory()
         render(
-            <Router path='/ViewSingleUser' history={history}>
-                <ViewSingleUser person={person} location={loco} />
-            </Router>
+            <BrowserRouter pathname='http://localhost:3003/form/users/' history={history}>
+                <ViewSingleUser history={history} location={history.location} />
+            </BrowserRouter>
         )
         expect(screen.getByText('Hobbbies')).toBeInTheDocument();
     })
