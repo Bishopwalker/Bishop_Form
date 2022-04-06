@@ -49,15 +49,7 @@ const founder = (id, arr)=>{
 const postPerson=(person)=> {
     let clone =  JSON.parse(JSON.stringify(person))
     delete clone.id
-    clone.firstname=clone.firstName;
-    clone.lastname=clone.lastName;
-    delete clone.lastName;
-    delete clone.firstName
-    clone.person_age = clone.age
-    let hobby = person.hobbies;
-    delete clone.age
-    delete clone.hobbies
-    clone.hobbies = hobby
+
     console.log(clone)
  axios.post(`http://localhost:3003/form/users/`, clone)
         .then(res => {
@@ -71,7 +63,7 @@ const postPerson=(person)=> {
     let clone =  JSON.parse(JSON.stringify(person))
   // clone.id=initialState.id
 console.log(clone)
-    clone.firstname = fixStr(clone.firstname)
+  //  clone.firstname = fixStr(clone.firstname)
     axios.post(`http://localhost:3003/auth/register/`, clone)
         .then(res => {
             console.log(res)
@@ -89,11 +81,7 @@ export function registerUser(userData){
 }
 const addPersonObj= (person )=>{
     let clone =  JSON.parse(JSON.stringify(person))
-
     clone.id=initialState.id
-
-    clone.firstName = fixStr(person.firstName)
-    clone.lastName = fixStr(person.lastName)
          postPerson(clone)
 
     return clone
@@ -112,7 +100,6 @@ const updatePersonFunction=(person,state)=>{
 const filtered = (id,arr)=>{
     let clone = JSON.parse(JSON.stringify(arr))
     let newArray;
-    //clone.splice(id,1);
     newArray=clone.filter((item,index)=>item.id!==id)
 
     return  newArray;

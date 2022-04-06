@@ -11,17 +11,17 @@ const AddUser=(props)=>{
     const [submit,setSubmit] = useState(false)
     const dispatch = useDispatch();
     const hobbyRef=React.useRef(),
-        firstNameRef = React.useRef();
+        firstnameRef = React.useRef();
 
-    const [firstName,setFirstName] = useState(''),
-        [lastName,setLastName] = useState(''),
-        [age,setAge] = useState(''),
+    const [firstname,setFirstName] = useState(''),
+        [lastname,setLastName] = useState(''),
+        [person_age,setAge] = useState(''),
         [hobbies,setHobbies] = useState(''),
         [id,setID] = useState(),
         [person,setPerson] = useState({
-            firstName,
-            lastName,
-            age,
+            firstname,
+            lastname,
+            person_age,
             hobbies
         }),
         [isMounted,setIsMounted] = useState(false),
@@ -32,9 +32,9 @@ const AddUser=(props)=>{
     const error={
        name:'Your first or last name need to be less than 50 characters',
         name_required:'You must enter a first and last name',
-        age:'Your Age is must be between 1-110 years Old',
-        age_min:'Your Min age must be 18',
-        age_required:'Please enter a valid age over 18',
+        person_age:'Your Age is must be between 1-110 years Old',
+        person_age_min:'Your Min person_age must be 18',
+        person_age_required:'Please enter a valid person_age over 18',
         hobby_min:'Your Hobbies must be at least 5 characters long',
         hobby_max:'Your Hobbies cannot be longer than 250 characters',
         hobby_required: 'Please include a hobby'
@@ -54,18 +54,18 @@ const AddUser=(props)=>{
 
         return firstLetter.replace(/\s/g,"_")
     },
-        fixAge=(age)=>{
-        if(age>110) {
-            setErrors((prev)=>[...prev,error.age])
+        fixAge=(person_age)=>{
+        if(person_age>110) {
+            setErrors((prev)=>[...prev,error.person_age])
         }
-            if(!age){
-                setErrors((prev)=>[...prev,error.age_required])
+            if(!person_age){
+                setErrors((prev)=>[...prev,error.person_age_required])
             }
-       else if(age<18 && age !==undefined){
-            setErrors((prev)=>[...prev,error.age_min])
+       else if(person_age<18 && person_age !==undefined){
+            setErrors((prev)=>[...prev,error.person_age_min])
         }
 
-        return age
+        return person_age
         },
         fixHobbies=(hobby)=>{
         if(hobby.length > 250){
@@ -86,16 +86,16 @@ const AddUser=(props)=>{
                   await setID(statePerson)
                   await setPerson({
                       id: id,
-                      firstName: fixStr(firstName),
-                      lastName: fixStr(lastName),
-                      age: fixAge(age),
+                      firstname: fixStr(firstname),
+                      lastname: fixStr(lastname),
+                      person_age: fixAge(person_age),
                       hobbies: fixHobbies(hobbies)
                   })
     }
 
 
 useEffect(()=>{
-    firstNameRef.current.focus()
+    firstnameRef.current.focus()
 
 },[])
     useEffect(async()=>{
@@ -105,7 +105,7 @@ if(isMounted) {
 if(errors.length > 0){
 
   await  setShowErrorMessage(true)
-    firstNameRef.current.focus()
+    firstnameRef.current.focus()
     setClassChoice('reset2')
 
 
@@ -130,7 +130,7 @@ if(errors.length > 0){
 
     const reset=(e)=>{
         e.preventDefault()
-        if(firstName.length ===0 && lastName.length === 0 && age.length === 0 && hobbies.length === 0){
+        if(firstname.length ===0 && lastname.length === 0 && person_age.length === 0 && hobbies.length === 0){
             window.alert(`Cannot clear an empty field`)
         }else{
             setFirstName('')
@@ -139,13 +139,13 @@ if(errors.length > 0){
             setHobbies('')
 
         }
-        firstNameRef.current.focus()
+        firstnameRef.current.focus()
     }
 
 
     const handleFirstNameChange=async(e)=>{
         e.preventDefault();
-     // const {firstName, lastName, age, hobbies} = e.target;
+     // const {firstname, lastname, person_age, hobbies} = e.target;
         setErrors([]);
         setShowErrorMessage(false)
       await  setFirstName(e.target.value)
@@ -182,7 +182,7 @@ if(errors.length===0) {
     setAge('')
     setHobbies('')
 }else{
-    firstNameRef.current.focus()
+    firstnameRef.current.focus()
 }
 
 
@@ -207,26 +207,26 @@ if(errors.length===0) {
     <div id='form' >
             <input
                 type='text'
-                name={firstName}
+                name={firstname}
                 placeholder="First Name"
                 onChange={handleFirstNameChange}
-                value={firstName}
-                ref={firstNameRef}
+                value={firstname}
+                ref={firstnameRef}
 
             />
             <input
                 type='text'
-                name={lastName}
+                name={lastname}
                 placeholder="Last Name"
                 onChange={handleLastNameChange}
-                value={lastName}
+                value={lastname}
             />
             <input
                 type={'number'}
-                name={age}
+                name={person_age}
                 placeholder="Age"
                 onChange={handleAgeChange}
-                value={age}
+                value={person_age}
             />
             <input
                 type={'text'}
