@@ -1,6 +1,8 @@
 import React, {useState} from 'react'
 import {Link,useNavigate} from 'react-router-dom';
 import axios from 'axios';
+import {useDispatch} from "react-redux";
+import {getUser} from "../../ducks/actions";
 const Login = () => {
     const [formData, setFormData] = useState({
 
@@ -9,6 +11,7 @@ const Login = () => {
 
     });
 const navigate = useNavigate();
+const dispatch = useDispatch();
     const {  email, password} = formData;
 
     const onChange = e => setFormData({...formData, [e.target.name]: e.target.value});
@@ -19,6 +22,7 @@ const navigate = useNavigate();
             const res = await axios.post('http://localhost:3003/auth/login', {email, password});
             console.log(res);
             navigate('/addUser');
+            dispatch(getUser(res.data));
 
         } catch (err) {
             console.error(err.response);

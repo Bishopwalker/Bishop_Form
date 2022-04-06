@@ -9,8 +9,7 @@ const ViewContainer = () => {
     const person = useSelector(state=>state.person);
 const [isMounted,setIsMounted] = useState(true);
 
-
-
+console.log(person)
     useEffect(()=>{
 
   if(isMounted) {
@@ -39,8 +38,8 @@ const [isMounted,setIsMounted] = useState(true);
            <h3>
                 {people.length !== 0?people.map((person={}, index) => (
 
-                    <li key={index}>Full Name: {person.firstName} {person.lastName}
-                        <p>AGE: {person.age}</p>
+                    <li key={index}>Full Name: {person.firstName?person.firstName:person.firstname} {person.lastName?person.lastName:person.lastname}
+                        <p>AGE: {person.age?person.age:person.person_age}</p>
                         <p>Hobbies: {person.hobbies}</p>
                         <div className="button-group">
                         <button id='delete_button'  onClick={()=>deletePerson(person.id)} >Delete</button>

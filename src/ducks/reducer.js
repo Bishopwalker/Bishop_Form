@@ -26,7 +26,13 @@ export function viewPerson(id){
         id
     }
 }
-
+export function getUser(user){
+    console.log()
+    return{
+        type:GET_USER,
+        user
+    }
+}
 const fixStr=(str)=>{
     console.log(str);
     let firstLetter = str.substring(0,1).toUpperCase() + str.substring(1).toLowerCase()
@@ -115,13 +121,17 @@ const filtered = (id,arr)=>{
   const reducer = (state = initialState, action) => {
         switch (action.type) {
             case 'INITIALIZED':
+                console.log(state)
                 return{
                     ...state,
                 }
                 case 'GET_USER':
+                    let user = action.payload
+                    console.log(user)
                     return{
                         ...state,
-                        person:action.person
+                        id:action.payload.id,
+                        person:[...state.person,action.payload]
                     }
             case 'ADD_PERSON':
                 let people = addPersonObj(action.payload)

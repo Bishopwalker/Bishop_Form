@@ -99,7 +99,7 @@ useEffect(()=>{
 
 },[])
     useEffect(async()=>{
-        dispatch(initializedFunction())
+       dispatch(initializedFunction())
 
 if(isMounted) {
 if(errors.length > 0){

@@ -9,6 +9,10 @@
      type:"DELETE_PERSON",
      payload:id
  })
+ export const getUser=(user)=>({
+     type:"GET_USER",
+     payload:user
+ })
 
 export const viewPersonFunction=(id)=>({
     type:"VIEW_PERSON",
