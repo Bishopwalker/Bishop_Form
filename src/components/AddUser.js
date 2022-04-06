@@ -3,7 +3,7 @@ import { useDispatch, useSelector} from 'react-redux';
 import {addPerson} from'../ducks/reducer'
  import {dispatchInfo,addPersonFunction, initializedFunction} from "../ducks/actions";
 import '../App.css';
-import {Link} from "react-router-dom";
+import {Link,useNavigate,useLocation} from "react-router-dom";
 
 
 const AddUser=(props)=>{

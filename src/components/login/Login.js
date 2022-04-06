@@ -21,7 +21,7 @@ const navigate = useNavigate();
             navigate('/addUser');
 
         } catch (err) {
-            console.error(err.response.data);
+            console.error(err.response);
         }
     }
     const onSubmit = async e => {
@@ -48,7 +48,7 @@ const navigate = useNavigate();
                             </div>
                             <button type="submit" className="btn btn-info btn-block mt-4">Login</button>
                         </form>
-                        <Link to="/register" className="btn btn-outline-info btn-block mt-4">Register</Link>
+                        <Link  to="/register" className="btn btn-outline-info btn-block mt-4">Register</Link>
                     </div>
                 </div>
             </div>

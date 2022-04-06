@@ -47,6 +47,8 @@ massive({
 app.post(`/auth/register`, authController.register);
 //login user
 app.post(`/auth/login`, authController.login);
+//logout user
+app.get('/auth/logout', authController.logout);
 //Create a new user
 app.post('/form/users', controller.addUser);
 //View all users
