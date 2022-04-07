@@ -49,6 +49,8 @@ app.post(`/auth/register`, authController.register);
 app.post(`/auth/login`, authController.login);
 //logout user
 app.get('/auth/logout', authController.logout);
+//check if user is logged in
+app.get('/auth/check-user', authController.logMeIn);
 //Create a new user
 app.post('/form/users', controller.addUser);
 //View all users

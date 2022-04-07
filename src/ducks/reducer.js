@@ -27,7 +27,7 @@ export function viewPerson(id){
     }
 }
 export function getUser(user){
-    console.log()
+    console.log(user)
     return{
         type:GET_USER,
         user
@@ -66,11 +66,12 @@ console.log(clone)
   //  clone.firstname = fixStr(clone.firstname)
     axios.post(`http://localhost:3003/auth/register/`, clone)
         .then(res => {
+            getUser(res.data);
             console.log(res)
-        })
-        .catch(err => {
+        }) .catch(err => {
             console.log(err)
         })
+      
 }
 export function registerUser(userData){
     registerPerson(userData)

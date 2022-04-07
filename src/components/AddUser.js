@@ -4,6 +4,7 @@ import {addPerson} from'../ducks/reducer'
  import {dispatchInfo,addPersonFunction, initializedFunction} from "../ducks/actions";
 import '../App.css';
 import {Link,useNavigate,useLocation} from "react-router-dom";
+import axios from "axios";
 
 
 const AddUser=(props)=>{
@@ -92,8 +93,16 @@ const AddUser=(props)=>{
                       hobbies: fixHobbies(hobbies)
                   })
     }
+const updatePerson=async()=>{
 
+        const results = await axios.put(`http://localhost:3003/auth/register/${id}`, person)
+    console.log(results);
 
+}
+const isLoggedIn=async()=>{
+        const users = await axios.get('http://localhost:3003/auth/check-user')
+
+}
 useEffect(()=>{
     firstnameRef.current.focus()
 
@@ -111,7 +120,8 @@ if(errors.length > 0){
 
 }else {
     setSubmit(true)
-    dispatch(addPersonFunction(person))
+    //dispatch(addPersonFunction(person))
+
     setErrors([])
     setShowErrorMessage(false)
     setTimeout(() => {
@@ -124,8 +134,6 @@ if(errors.length > 0){
     }
 }
 }
-
-
     },[person])
 
     const reset=(e)=>{
