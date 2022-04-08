@@ -46,12 +46,12 @@ const founder = (id, arr)=>{
 }
 
 
-const postPerson=(person)=> {
+const postPerson=(person,id)=> {
     let clone =  JSON.parse(JSON.stringify(person))
     delete clone.id
 
     console.log(clone)
- axios.post(`http://localhost:3003/form/users/`, clone)
+    axios.put(`http://localhost:3003/auth/register/${id}`, clone)
         .then(res => {
             console.log(res)
         })
@@ -83,7 +83,7 @@ export function registerUser(userData){
 const addPersonObj= (person )=>{
     let clone =  JSON.parse(JSON.stringify(person))
     clone.id=initialState.id
-         postPerson(clone)
+         //postPerson(clone)
 
     return clone
 }

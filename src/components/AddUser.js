@@ -8,17 +8,17 @@ import axios from "axios";
 
 
 const AddUser=(props)=>{
-    const statePerson = useSelector(state=>state.person.id);
+    const statePerson = useSelector(state=>state.id);
     const [submit,setSubmit] = useState(false)
     const dispatch = useDispatch();
     const hobbyRef=React.useRef(),
         firstnameRef = React.useRef();
-
+const navigate = useNavigate();
     const [firstname,setFirstName] = useState(''),
         [lastname,setLastName] = useState(''),
         [person_age,setAge] = useState(''),
         [hobbies,setHobbies] = useState(''),
-        [id,setID] = useState(),
+        [id,setID] = useState(''),
         [person,setPerson] = useState({
             firstname,
             lastname,
@@ -93,19 +93,21 @@ const AddUser=(props)=>{
                       hobbies: fixHobbies(hobbies)
                   })
     }
-const updatePerson=async()=>{
-
-        const results = await axios.put(`http://localhost:3003/auth/register/${id}`, person)
+const updatePerson=async(peps)=>{
+delete peps.id
+    console.log(statePerson)
+        const results = await axios.put(`http://localhost:3003/form/users/${statePerson}`, peps)
     console.log(results);
 
 }
 const isLoggedIn=async()=>{
         const users = await axios.get('http://localhost:3003/auth/check-user')
+        console.log(users);
 
 }
-useEffect(()=>{
+useEffect(async()=>{
     firstnameRef.current.focus()
-
+    // await isLoggedIn()
 },[])
     useEffect(async()=>{
        dispatch(initializedFunction())
@@ -120,8 +122,8 @@ if(errors.length > 0){
 
 }else {
     setSubmit(true)
-    //dispatch(addPersonFunction(person))
-
+  dispatch(addPersonFunction(person))
+await updatePerson(person)
     setErrors([])
     setShowErrorMessage(false)
     setTimeout(() => {
@@ -195,9 +197,16 @@ if(errors.length===0) {
 
 
     }
-
+    const logout=async(e) => {
+        e.preventDefault();
+        await axios.get('http://localhost:3003/auth/logout')
+      navigate('/login')
+    }
+//please this in dropdown menu soon
+    //logout
     return(
         <div className="App-header outSide" >
+            <div onClick={logout}>Log Out</div>
             <div id='contain'>
                 <div id='right'>
             {showErrorMessage ?(

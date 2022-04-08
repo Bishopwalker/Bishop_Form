@@ -17,7 +17,7 @@ const dispatch = useDispatch();
     const onChange = e => setFormData({...formData, [e.target.name]: e.target.value});
 
     const handleLogin=async()=>{
-        const body = {email, password};
+
         try {
             const res = await axios.post('http://localhost:3003/auth/login', {email, password});
             console.log(res);
