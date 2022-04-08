@@ -91,28 +91,28 @@ React.useEffect(()=>{
             <input
                 type='text'
                 placeholder='First Name'
-                value={firstname}
+                value={firstname?firstname:''}
                 onChange={handleFirstNameChange}
                 name='firstname'
             />
             <input
                 type='text'
                 placeholder='Last Name'
-                value={lastname}
+                value={lastname?lastname:''}
                 onChange={handleLastNameChange}
                 name='lastname'
             />
             <input
                 type='number'
                 placeholder='Age'
-                value={person_age}
+                value={person_age?person_age:''}
                 onChange={handleAgeChange}
                 name='person_age'
             />
             <input
                 type='text'
                 placeholder='Hobbies'
-                value={hobbies}
+                value={hobbies?hobbies:''}
                 onChange={handleHobbiesChange}
                 name='hobbies'
             />
