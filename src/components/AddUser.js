@@ -8,7 +8,8 @@ import axios from "axios";
 
 
 const AddUser=(props)=>{
-    const statePerson = useSelector(state=>state.id);
+    const CurrentUserID = useSelector(state=>state.id);
+    const currentUser = useSelector(state=>state.person);
     const [submit,setSubmit] = useState(false)
     const dispatch = useDispatch();
     const hobbyRef=React.useRef(),
@@ -84,7 +85,7 @@ const navigate = useNavigate();
 // console.log(errors.length)
     const addNewPerson = async() => {
 
-                  await setID(statePerson)
+                  await setID(CurrentUserID)
                   await setPerson({
                       id: id,
                       firstname: fixStr(firstname),
@@ -96,7 +97,7 @@ const navigate = useNavigate();
 const updatePerson=async(peps)=>{
 delete peps.id
 
-        const results = await axios.put(`http://localhost:3003/form/users/${statePerson}`, peps)
+        const results = await axios.put(`http://localhost:3003/form/users/${CurrentUserID}`, peps)
 
 
 }
@@ -198,6 +199,7 @@ if(errors.length===0) {
         await axios.get('http://localhost:3003/auth/logout')
       navigate('/login')
     }
+    console.log(currentUser[0])
 //please this in dropdown menu soon
     //logout
     return(
@@ -215,7 +217,9 @@ if(errors.length===0) {
             ):null}
                 </div>
         <form onSubmit={handleSubmit}>
-                    <span id='spans'><h2>Fill Out Form</h2></span>
+                    <span id='spans'>
+                      {currentUser[0]?<h2>Welcome Back {currentUser[0].firstname}</h2> :<h2>Fill Out Form</h2>}
+                    </span>
 
     <div id='form' >
             <input
