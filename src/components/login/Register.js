@@ -20,7 +20,6 @@ const Register = () => {
         if (password !== password2) {
             alert('Passwords do not match');
         } else {
-            console.log('Register');
             dispatch(registerUser({firstname, email, password}));
             navigate('/addUser')
         }

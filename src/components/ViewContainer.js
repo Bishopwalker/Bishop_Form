@@ -9,7 +9,7 @@ const ViewContainer = () => {
     const person = useSelector(state=>state.person);
 const [isMounted,setIsMounted] = useState(true);
 
-console.log(person)
+
     useEffect(()=>{
 
   if(isMounted) {

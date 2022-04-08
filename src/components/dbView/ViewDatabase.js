@@ -28,10 +28,9 @@ React.useEffect(() => {
         }
     };
 const deletePerson = async(id) => {
-    console.log(id)
+
     try {
         const result = await axios.delete(`http://localhost:3003/form/users/${id}`)
-
         setData(result.data)
     }catch(err) {
     console.log(err)

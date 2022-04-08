@@ -95,19 +95,15 @@ const navigate = useNavigate();
     }
 const updatePerson=async(peps)=>{
 delete peps.id
-    console.log(statePerson)
+
         const results = await axios.put(`http://localhost:3003/form/users/${statePerson}`, peps)
-    console.log(results);
+
 
 }
-const isLoggedIn=async()=>{
-        const users = await axios.get('http://localhost:3003/auth/check-user')
-        console.log(users);
 
-}
 useEffect(async()=>{
     firstnameRef.current.focus()
-    // await isLoggedIn()
+
 },[])
     useEffect(async()=>{
        dispatch(initializedFunction())

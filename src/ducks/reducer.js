@@ -1,7 +1,7 @@
 import axios from 'axios';
 const initialState={
     person:[],
-    id:0
+    id:null
 }
 
 
@@ -27,18 +27,13 @@ export function viewPerson(id){
     }
 }
 export function getUser(user){
-    console.log(user)
+
     return{
         type:GET_USER,
         user
     }
 }
-const fixStr=(str)=>{
-    console.log(str);
-    let firstLetter = str.substring(0,1).toUpperCase() + str.substring(1).toLowerCase()
-    return firstLetter.replace(/\s/g, "")
 
-}
 const founder = (id, arr)=>{
     let newArray=[];
     newArray= arr.find(item=>item.id===id)
@@ -46,28 +41,28 @@ const founder = (id, arr)=>{
 }
 
 
-const postPerson=(person,id)=> {
-    let clone =  JSON.parse(JSON.stringify(person))
-    delete clone.id
-
-    console.log(clone)
-    axios.put(`http://localhost:3003/auth/register/${id}`, clone)
-        .then(res => {
-            console.log(res)
-        })
-        .catch(err => {
-            console.log(err)
-        })
-}
+// const postPerson=(person,id)=> {
+//     let clone =  JSON.parse(JSON.stringify(person))
+//     delete clone.id
+//
+//     console.log(clone)
+//     axios.put(`http://localhost:3003/auth/register/${id}`, clone)
+//         .then(res => {
+//             console.log(res)
+//         })
+//         .catch(err => {
+//             console.log(err)
+//         })
+// }
   const registerPerson=(person)=>{
     let clone =  JSON.parse(JSON.stringify(person))
   // clone.id=initialState.id
-console.log(clone)
+
   //  clone.firstname = fixStr(clone.firstname)
     axios.post(`http://localhost:3003/auth/register/`, clone)
         .then(res => {
             getUser(res.data);
-            console.log(res)
+
         }) .catch(err => {
             console.log(err)
         })
@@ -109,13 +104,10 @@ const filtered = (id,arr)=>{
   const reducer = (state = initialState, action) => {
         switch (action.type) {
             case 'INITIALIZED':
-                console.log(state)
                 return{
                     ...state,
                 }
                 case 'GET_USER':
-                    let user = action.payload
-                    console.log(user)
                     return{
                         ...state,
                         id:action.payload.id,

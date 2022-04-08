@@ -23,7 +23,7 @@ const DatabaseEditForm=()=>{
         await setIsEdit(true);
         try {
             const result = await axios.put(`http://localhost:3003/form/users/${id}`,people)
-            console.log(result)
+
         } catch (err) {
             console.log(err)
         }
@@ -67,7 +67,7 @@ const DatabaseEditForm=()=>{
             setAge(result.data[0].person_age)
             setHobbies(result.data[0].hobbies)
             setID(result.data[0].id)
-            console.log(result.data[0])
+
         } catch (err) {
             console.log(err)
         }
