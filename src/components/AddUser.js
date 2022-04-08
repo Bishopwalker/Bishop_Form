@@ -199,7 +199,7 @@ if(errors.length===0) {
         await axios.get('http://localhost:3003/auth/logout')
       navigate('/login')
     }
-    console.log(currentUser[0])
+
 //please this in dropdown menu soon
     //logout
     return(
