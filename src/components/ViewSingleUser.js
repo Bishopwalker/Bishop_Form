@@ -19,8 +19,8 @@ const people=React.useRef(from.people.people.find(item=>item.id===from.person))
        !isObjectEmpty(people.current) ?
     <div className="App-header outSide ">
 
-        <h2>Full Name: {people.current.firstName} {people.current.lastName}</h2>
-        <h2>Age: {people.current.age}</h2>
+        <h2>Full Name: {people.current.firstname} {people.current.lastname}</h2>
+        <h2>Age: {people.current.person_age}</h2>
         <h3>Hobbies: {people.current.hobbies}</h3>
         <Link to='/addUser'>Return Back to Form</Link>
         <br></br>

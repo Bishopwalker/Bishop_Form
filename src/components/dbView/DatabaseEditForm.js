@@ -75,7 +75,7 @@ const DatabaseEditForm=()=>{
     }
     React.useEffect(()=>{
 
-        editPerson(from).then((r)=>console.log(r))
+        editPerson(from).then((r)=>console.log('I promise to edit'))
     },[])
 React.useEffect(()=>{
     setPerson({
