@@ -16,7 +16,7 @@ import Register from "./components/login/Register";
 import Login from "./components/login/Login";
 
 if (process.env.NODE_ENV === 'development') {
-require('./__mocks__/browser')
+//require('./__mocks__/browser')
 }
 
 ReactDOM.render(
