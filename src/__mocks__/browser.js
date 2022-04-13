@@ -9,29 +9,29 @@ export const worker = setupWorker(
             {
                 id:0,
                 age: 4,
-                lastName: 'Bloggs',
-                firstName: 'Jim',
-                hobbies: 'Everythign under the sun',
+                lastname: 'Bloggs',
+                firstname: 'Jim',
+                hobbies: 'Everythign under the sun, fishing, swimming, and reading',
             },
             {
                 id:1,
                 age: 40,
-                lastName: 'Smith',
-                firstName: 'Jennifer',
-                hobbies: 'Gardening',
+                lastname: 'Smith',
+                firstname: 'Jennifer',
+                hobbies: 'Gardening, cooking, and reading',
             },
           {
               id:2,
               age: 44,
-              lastName: 'Sambu',
-              firstName: 'Williams',
-              hobbies: 'Everythign under the sun',
+              lastname: 'Sambu',
+              firstname: 'Williams',
+              hobbies: 'Everythign under the sun, fishing, swimming, and reading, soccer, work, and smoking',
           },
           {
               id:3,
               age: 50,
-              lastName: 'Susuz',
-              firstName: 'Hobbies',
+              lastname: 'Susuz',
+              firstname: 'Hobbies',
               hobbies: 'Everythign under the sun And Nothing at all',
           }]
       )
@@ -53,7 +53,7 @@ export const worker = setupWorker(
        }
        }),
 
-    rest.post('http://localhost:3001/auth/login/', (req, res, ctx) => {
+    rest.post('http://localhost:3003/auth/login/', (req, res, ctx) => {
      //   const user = req.body.searchParams.get('email');
 
 
