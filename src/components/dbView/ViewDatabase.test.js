@@ -1,11 +1,15 @@
 import React from 'react';
 import mockAxios from 'axios';
-import {render,cleanup, waitForElement, screen,act} from '@testing-library/react';
+//import {render,cleanup, waitForElement, screen,act} from '@testing-library/react';
 import ViewDatabase from './ViewDatabase';
 import '@testing-library/jest-dom/extend-expect';
 import {BrowserRouter} from "react-router-dom";
 import {createMemoryHistory} from "history";
 //import {act} from "react-dom/test-utils";
+import {rest} from 'msw';
+import {setupServer} from 'msw/node';
+import {fireEvent, waitForElement, screen, act, cleanup, render} from '../../setupTests'
+
 
 function renderWithRouter(ui,{route = '/', history=createMemoryHistory({initialEntries: [route]})} = {}) {
     return {
@@ -17,6 +21,24 @@ function renderWithRouter(ui,{route = '/', history=createMemoryHistory({initialE
 
 
 describe('View Database', () => {
+     export const handlers = [
+        rest.get(`http://localhost:3003/form/users/`,(req, res, ctx) => {
+            return res(ctx.json({
+                data: [
+                    {
+                        "id": "1",
+                        "name": "John",
+                        "email": ""
+                    },
+                    {
+                        "id": "2",
+                        "name": "Jane",
+                        "email": ""
+                    } ]
+            }))
+        })
+    ]
+
     afterEach(cleanup);
 
     it('has a loading screen in the document with the correct text when it is loading', async () => {

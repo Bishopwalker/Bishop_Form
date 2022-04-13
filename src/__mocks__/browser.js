@@ -1,7 +1,8 @@
 import {setupWorker, rest} from 'msw'
 
-const worker = setupWorker(
-  rest.get('http://localhost:3003/form/users-test/', (req, res, ctx) => {
+
+export const worker = setupWorker(
+  rest.get('http://localhost:3003/form/users/', (req, res, ctx) => {
     return res(
       ctx.json([
 
@@ -35,6 +36,39 @@ const worker = setupWorker(
           }]
       )
   )}
+  ),
+    rest.get('http://localhost:3003/form/users/:id', (req, res, ctx) => {
+        const user = req.body.searchParams.get('email');
+
+       if(user === 'a@a.com'){
+           return res(
+               ctx.json({
+                   id:0,
+                   age: 4,
+                   lastName: 'Ammar',
+                   firstName: 'Hassan',
+                   hobbies: 'Everythign under the sun',
+               })
+           )
+       }
+       }),
+
+    rest.post('http://localhost:3001/auth/login/', (req, res, ctx) => {
+     //   const user = req.body.searchParams.get('email');
+
+
+            return res(
+                ctx.json({
+                    id: 0,
+                    age: 4,
+                    lastName: 'Ammar',
+                    firstName: 'Hassan',
+                    hobbies: 'Everythign under the sun',
+                })
+            )
+
+    })
+
   )
-  )
+
 worker.start()
