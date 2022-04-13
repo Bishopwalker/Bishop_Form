@@ -21,7 +21,7 @@ function renderWithRouter(ui,{route = '/', history=createMemoryHistory({initialE
 
 
 describe('View Database', () => {
-     export const handlers = [
+     const handlers = [
         rest.get(`http://localhost:3003/form/users/`,(req, res, ctx) => {
             return res(ctx.json({
                 data: [
@@ -38,8 +38,15 @@ describe('View Database', () => {
             }))
         })
     ]
-
+const server = setupServer(...handlers);
+     //Enable API mocking
+    beforeAll(() => server.listen());
+    //
+    //Reset runtime request handlers we may add
+    afterEach(() => server.resetHandlers());
     afterEach(cleanup);
+//Disable API mocking after the tests are done
+    afterAll(() => server.close());
 
     it('has a loading screen in the document with the correct text when it is loading', async () => {
       render(<ViewDatabase/>, {wrapper: BrowserRouter});
@@ -67,9 +74,11 @@ describe('View Database', () => {
       })
         expect(mockAxios.get).toHaveBeenCalledTimes(1);
         expect(mockAxios.get).toHaveBeenCalledWith('http://localhost:3003/form/users/');
-     //
-     // expect(screen.getByTestId('db')).toBeInTheDocument();
-     //   const resolved = await screen.findByTestId('db');
-      //  expect(resolved).toBeVisible()
+
+    })
+
+    test('fetches data',async()=>{
+        render(<ViewDatabase/>, {wrapper: BrowserRouter, container: document.body});
+       expect(await screen.findByText('Return to Form')).toBeInTheDocument()
     })
 })
