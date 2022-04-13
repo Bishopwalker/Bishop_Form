@@ -90,7 +90,7 @@ const deletePerson = async(id) => {
           <br/>
           <div id='dived'>
               <div>
-      {mappedData}
+      {data.length>0?mappedData:null}
 
               </div>
 

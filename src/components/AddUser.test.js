@@ -3,7 +3,7 @@ import {render, fireEvent, waitFor, screen, act} from '@testing-library/react';
 import AddUser from './AddUser';
 import * as reactRedux  from 'react-redux';
 import {createMemoryHistory} from "history";
-import {Router} from "react-router-dom";
+
 import '@testing-library/jest-dom';
 import userEvent from "@testing-library/user-event";
 import {BrowserRouter} from "react-router-dom";

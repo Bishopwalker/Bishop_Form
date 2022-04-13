@@ -5,7 +5,7 @@ import './DatabaseEditForm.css';
 
 const DatabaseEditForm=()=>{
     const location = useLocation();
-    const {from} = location.state
+    const {from} = location.state || {}
     const [firstname,setFirstName] = useState(''),
         [lastname,setLastName] = useState(''),
         [person_age,setAge] = useState(''),
@@ -88,6 +88,7 @@ React.useEffect(()=>{
 
     return(
         <form onSubmit={handleSubmit}>
+            <label htmlFor='name' >First Name</label>
             <input
                 type='text'
                 placeholder='First Name'

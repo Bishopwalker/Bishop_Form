@@ -27,8 +27,13 @@ describe('View Database', () => {
                 data: [
                     {
                         "id": "1",
-                        "name": "John",
-                        "email": ""
+                        "firstname": "John",
+                        "lastname": "Jones",
+                        "age":25,
+                        "hobbies": [
+                            "football",
+                            "coding"
+                        ]
                     },
                     {
                         "id": "2",
@@ -80,5 +85,9 @@ const server = setupServer(...handlers);
     test('fetches data',async()=>{
         render(<ViewDatabase/>, {wrapper: BrowserRouter, container: document.body});
        expect(await screen.findByText('Return to Form')).toBeInTheDocument()
+        expect( screen.getByRole('link')).toHaveTextContent('Return to Form')
+      //expect(await screen.findByText('DataBase Entries')).toBeInTheDocument()
+        //console.log(screen.getByRole('link'))
+        fireEvent.click(screen.getByRole('link'));
     })
 })

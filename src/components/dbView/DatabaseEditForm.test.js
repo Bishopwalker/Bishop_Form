@@ -1,11 +1,12 @@
 import React from 'react'
-import {render, cleanup, waitForElement, screen} from '@testing-library/react';
+import {render, cleanup, waitForElement, screen} from '../../setupTests';
 import '@testing-library/jest-dom/extend-expect'
 import axiosMock from 'axios'
 import DatabaseEditForm from './DatabaseEditForm'
 import {BrowserRouter, MemoryRouter} from 'react-router-dom'
 import {Router} from 'react-router-dom'
 import {createMemoryHistory} from 'history'
+import ViewDatabase from "./ViewDatabase";
 
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'), // use actual for all non-hook parts
@@ -95,8 +96,21 @@ describe('Database EditForm',()=>{
     //         </Router>,{route: '/database/edit/1',state:state}
     //     );
     // })
-    test('',()=>{
-        renderWithRouter(<DatabaseEditForm/>,{route: 'http://localhost:3003/form/users-test/'})
-        console.log(screen.getByRole('form'))
+    test('Should have a first name input field',async()=>{
+      //  renderWithRouter(<DatabaseEditForm/>,{route: 'http://localhost:3003/form/users-test/'})
+        render(<DatabaseEditForm/>, {wrapper: BrowserRouter, container: document.body, route:'http://localhost:3003/form/users-test/'});
+       expect(await screen.findAllByPlaceholderText(/first name/i)).toHaveLength(1);
+    })
+    test('Should have a last name input field',async()=>{
+        render(<DatabaseEditForm/>, {wrapper: BrowserRouter, container: document.body, route:'http://localhost:3003/form/users-test/'});
+        expect(await screen.findAllByPlaceholderText(/last name/i)).toHaveLength(1);
+    })
+    test('Should have an age input field',async()=>{
+        render(<DatabaseEditForm/>, {wrapper: BrowserRouter, container: document.body, route:'http://localhost:3003/form/users-test/'});
+        expect(await screen.findAllByPlaceholderText(/age/i)).toHaveLength(1);
+    })
+    test('Should have a hobbies input field',async()=>{
+        render(<DatabaseEditForm/>, {wrapper: BrowserRouter, container: document.body, route:'http://localhost:3003/form/users-test/'});
+        expect(await screen.findAllByPlaceholderText(/hobbies/i)).toHaveLength(1);
     })
 })
