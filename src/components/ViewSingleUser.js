@@ -5,15 +5,25 @@ import {connect} from 'react-redux'
 
 const ViewSingleUser=(props)=>{
     const location = useLocation()
-    const {from} = location.state
+    const {from} = location.state || {}
+    //{people:{people:[{id:1,name:"",email:""}]}}
 //const person = useSelector(state=>state.person[from])
-    console.log(from.person)
-    console.log(from.people.people )
-const people=React.useRef(from.people.people.find(item=>item.id===from.person))
-    console.log(people)
+//     console.log(from.person)
+//     console.log(from.people.people )
+    const people=React.useRef()
+    if(from===undefined){
+        return(
+ <div> <h3>The List is Empty</h3></div>
+        )
+    }
+
     const isObjectEmpty=(obj={})=>{
         return Object.keys(obj).length === 0
     }
+
+        people.current = from.people.people.find(item=>item.id===from.person)
+
+
 
     return(
        !isObjectEmpty(people.current) ?

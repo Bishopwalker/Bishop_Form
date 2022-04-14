@@ -31,7 +31,7 @@ const Register = () => {
                 <div className="row">
                     <div className="col-md-8 m-auto">
                         <h1 className="display-4 text-center">Sign Up</h1>
-                        <p className="lead text-center">Create your Has account</p>
+                        <p className="lead text-center">Create your Hassan account</p>
                         <form onSubmit={e => onSubmit(e)}>
                             <div className="form-group">
                                 <input type="text" className="form-control form-control-lg" placeholder="First Name" name="firstname" value={firstname} onChange={e => onChange(e)}/>

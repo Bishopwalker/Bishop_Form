@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`View Single User Component Should take a snapshot 1`] = `
+<DocumentFragment>
+  <div>
+     
+    <h3>
+      The List is Empty
+    </h3>
+  </div>
+</DocumentFragment>
+`;
