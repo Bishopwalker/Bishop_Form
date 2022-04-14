@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Database EditForm Should take a snapshot 1`] = `
+<DocumentFragment>
+  <form
+    data-testid="helper"
+  >
+    <input
+      name="firstname"
+      placeholder="First Name"
+      type="text"
+      value=""
+    />
+    <input
+      name="lastname"
+      placeholder="Last Name"
+      type="text"
+      value=""
+    />
+    <input
+      name="person_age"
+      placeholder="Age"
+      type="number"
+      value=""
+    />
+    <input
+      name="hobbies"
+      placeholder="Hobbies"
+      type="text"
+      value=""
+    />
+    <button>
+      Update User
+    </button>
+    <a
+      href="/viewDatabase"
+    >
+      <button>
+        return to db
+      </button>
+    </a>
+    <div>
+      <h1>
+        Loading...
+      </h1>
+    </div>
+  </form>
+</DocumentFragment>
+`;

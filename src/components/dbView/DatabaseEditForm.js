@@ -87,8 +87,8 @@ React.useEffect(()=>{
 },[firstname,lastname,person_age,hobbies])
 
     return(
-        <form onSubmit={handleSubmit}>
-            <label htmlFor='name' >First Name</label>
+        <form onSubmit={handleSubmit} data-testid='helper'>
+
             <input
                 type='text'
                 placeholder='First Name'
@@ -96,6 +96,7 @@ React.useEffect(()=>{
                 onChange={handleFirstNameChange}
                 name='firstname'
             />
+
             <input
                 type='text'
                 placeholder='Last Name'
@@ -103,6 +104,7 @@ React.useEffect(()=>{
                 onChange={handleLastNameChange}
                 name='lastname'
             />
+
             <input
                 type='number'
                 placeholder='Age'
@@ -110,6 +112,7 @@ React.useEffect(()=>{
                 onChange={handleAgeChange}
                 name='person_age'
             />
+
             <input
                 type='text'
                 placeholder='Hobbies'

@@ -26,7 +26,8 @@ function render(
     {   route = '/',
         history = createMemoryHistory({initialEntries: [route]}),
         preloadedState,
-        store = configureStore({ reducer: { ...reducer, ...preloadedState } }),
+        store = configureStore({reducer}),
+       // store = configureStore( { ...reducer, ...preloadedState }),
         ...renderOptions
     } ={}
 ) {
