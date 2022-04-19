@@ -6,7 +6,6 @@ exports[`Database EditForm Should take a snapshot 1`] = `
     data-testid="helper"
   >
     <input
-      name="firstname"
       placeholder="First Name"
       type="text"
       value=""

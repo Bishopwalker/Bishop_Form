@@ -94,7 +94,7 @@ React.useEffect(()=>{
                 placeholder='First Name'
                 value={firstname?firstname:''}
                 onChange={handleFirstNameChange}
-                name='firstname'
+                
             />
 
             <input
